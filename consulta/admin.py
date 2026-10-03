@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Consulta, Procedimento
+from .models import Consulta, Procedimento, ConsultaProcedimento
 
-# Register your models here
 @admin.register(Procedimento)
 class ProcedimentoAdmin(admin.ModelAdmin):
     list_display = ("nome", "descricao")
@@ -24,5 +23,11 @@ class ConsultaAdmin(admin.ModelAdmin):
         "local_atendimento"
     )
 
-    # Deixa o ManyToMany melhor de selecionar com duas caixas lado a lado
-    filter_horizontal = ("procedimentos",)
+class ConsultaProcedimentoInline(admin.TabularInline):
+    model = ConsultaProcedimento
+    extra = 1   # Quantidade de linhas em branco exibidas
+
+@admin.register(ConsultaProcedimento)
+class ConsultaProcedimentoAdmin(admin.ModelAdmin):
+    list_display = ("consulta", "procedimento", "criado_em")
+    list_filter = ("criado_em", "procedimento")
