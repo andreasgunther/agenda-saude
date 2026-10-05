@@ -1,0 +1,5 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- ou renderizar campo por campo -->
+    <button type="submit" class="btn btn-success">Salvar Consulta</button>
+</form>

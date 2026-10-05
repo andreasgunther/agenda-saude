@@ -11,11 +11,11 @@ class ConsultaAdmin(admin.ModelAdmin):
     list_display = (
         "paciente",
         "medico",
-        "data_horario",
+        "data_consulta",
         "status",    
     )
 
-    list_filter = ("status", "local_atendimento", "data_horario", "medico")
+    list_filter = ("status", "local_atendimento", "data_consulta", "medico")
     search_fields = (
         "paciente_nome",
         "medico_nome",

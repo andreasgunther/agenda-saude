@@ -17,20 +17,20 @@ class ConsultaForm(forms.ModelForm):
         fields = [
             "paciente",
             "medico",
-            "data_horario",
-            "local_atendiemento",
+            "data_consulta",
+            "local_atendimento",
             "status",
             "motivo",
             "observacoes_medicas",
         ]
 
         widgets = {
-            "paciente": forms.Select(attrs={"class": "form-select"}),
-            "medico": forms.Select(attrs={"class": "form-select"}),
-            "data_horario": forms.DateTimeInput(
+            "paciente": forms.TextInput(attrs={"class": "form-select"}),
+            "medico": forms.TextInput(attrs={"class": "form-select"}),
+            "data_consulta": forms.DateInput(
                 attrs = {
                     "class": "form-control",
-                    "type": "datetime-local",   # Habilito o selector nativo de data e hora do navegador
+                    "type": "date",   # Habilito o selector nativo de data e hora do navegador
                 },
                 format="%Y-%m-%dT%H:%M",
             ),

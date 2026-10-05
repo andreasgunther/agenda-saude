@@ -24,7 +24,7 @@ class Consulta(models.Model):
 
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE, related_name="consultas")
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name="consultas")
-    data_horario = models.DateTimeField(verbose_name="Data e Horário")
+    data_consulta = models.DateField(verbose_name="Data da Consulta")
     local_atendimento = models.CharField(max_length=150, help_text="Ex: UBS Centro, Posto Bairro Sul, Clínica Municipal",)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="AGENDADA")
 
@@ -46,7 +46,7 @@ class Consulta(models.Model):
     class Meta:
         verbose_name = "Consulta"
         verbose_name_plural = "Consultas"
-        ordering = ["-data_horario"]
+        ordering = ["-data_consulta"]
 
     def __str__(self):
         return f"{self.paciente.nome} com Dr(a). {self.medico.nome} em {self.data_horario.strftime('%d/%m/%Y %H:%M')}"
