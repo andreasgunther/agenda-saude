@@ -8,8 +8,8 @@ class Procedimento(models.Model):
     descricao = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name = "Procedimento / Exame"
-        verbose_name_plural = "Procedimentos e Exames"
+        verbose_name = "Procedimento"
+        verbose_name_plural = "Procedimentos"
 
     def __str__(self):
         return self.nome
@@ -29,17 +29,17 @@ class Consulta(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="AGENDADA")
 
     # Relação Many to Many
-    # Uma consulta que pode envolver múltiplos procedimentos/exames
+    # Uma consulta que pode envolver múltiplos procedimentos
     procedimentos = models.ManyToManyField(
         Procedimento,
         blank=True,
         through="ConsultaProcedimento",
         related_name="consultas",
-        help_text="Selecione os exames/procedimentos vinculados a esta consulta",
+        help_text="Selecione os procedimentos vinculados a esta consulta",
     )
 
-    motivo = models.CharField(max_length=255, blank=True, null=True, verbose_name="Motivo/Queixa")
-    observacoes_medicas = models.TextField(blank=True, null=True, verbose_name="Evolução / Observações")
+    motivo = models.CharField(max_length=255, blank=True, null=True, verbose_name="Motivo")
+    observacoes_medicas = models.TextField(blank=True, null=True, verbose_name="Observações")
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now_add=True)
 
